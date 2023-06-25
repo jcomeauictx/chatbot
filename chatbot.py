@@ -1,12 +1,14 @@
-#!/chatbot.py
+#!/usr/bin/python3 -OO
 '''
 From https://beebom.com/how-build-own-ai-chatbot-with-chatgpt-api/
 '''
-import netrc
+import netrc, logging
 import openai
 import gradio as gr
+logging.basicConfig(level=logging.DEBUG if __debug__ else logging.WARN)
 
 openai.api_key = netrc.netrc().authenticators('platform.openai.com')[2]
+logging.debug('key: %r', openai.api_key)
 
 messages = [
     {"role": "system", "content": "You are a helpful and kind AI Assistant."},
